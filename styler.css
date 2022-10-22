@@ -24,6 +24,10 @@
     color:white;
 }
 
+.btn{
+    border: 1px solid blue;
+    border-radius: 10px;
+}
 a:hover{
   color: orange !important;
 }

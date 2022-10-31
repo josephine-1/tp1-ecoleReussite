@@ -10,7 +10,7 @@
     <style>
         td{
         /*     border:1px solid black; */
-             padding:1rem; 
+             padding:1.5rem; 
         }
     </style>
 </head>
@@ -52,22 +52,21 @@
                             <tr>
                                 <td><strong>Nom</strong></td>
                                 <td><strong>Prénom</strong></td>
-                                <td><strong>Email</strong></td>
                                 <td><strong>Matricule</strong></td>
-                                <td><strong>Role</strong></td>
-                                <td><strong>Action</strong></td>
+                                <td><strong>Date-Archivage</strong></td>
+                                <td><strong>Désarchivage</strong></td>
+
                                 
                             </tr>
                         
                             <tr>
                                 <td>diop</td>
                                 <td>bineta</td>
-                                <td>bin@gmail.com</td>
+                               
                                 <td>Z6S0WVUL</td>
-                                <td>Administrateur</td>
-                                <td><a href="modifier.php"><img src="image/edit.png"  style="width: 2rem;height: 2rem;" alt="">
-                                <td><a href="archiver.php"><img src="image/sup.svg" style="width: 2rem;height: 2rem;" alt=""></a></td>
-                                <td><a href="change.php"></a><img src="image/swap.png" style="width: 2rem;height: 2rem;" alt=""></a></td></td>
+                                <td>2022-10-27</td>
+                                <td><a href="#"><img src="image/archiver.png"  style="width: 2rem;height: 2rem;" alt="">
+                                
                             </tr>
                         </table>
                     </div>

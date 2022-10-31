@@ -6,16 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styler.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>page-admin</title>
-    <style>
-        td{
-        /*     border:1px solid black; */
-             padding:1rem; 
-        }
-    </style>
+    <title>page-userSimple</title>
 </head>
 <body >
-    <div class="container" style="border: 1px solid  cornflowerblue;">
+    <div class="container" style="border: 1px solid black;">
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
                 <div>
@@ -27,7 +21,7 @@
                     </div> 
                    <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
                    <div class="lesUsers text-center " style="color: black;">
-                   <a  href="actifs.php"><strong>actifs</strong></a><br>
+                   <a  href="actifs.php"><strong> actifs</strong></a><br>
                    <a   href="archivés.php"><strong> archivés</strong></a>
                    </div>
                     </div>
@@ -45,32 +39,10 @@
                     <div class="col-lg-2 mt-5">
                         <a href="page-connexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
                     </div>
+
                 </div>
                 <div class="row table">
-                    <div class="col-lg-12">
-                        <table>
-                            <tr>
-                                <td><strong>Nom</strong></td>
-                                <td><strong>Prénom</strong></td>
-                                <td><strong>Email</strong></td>
-                                <td><strong>Matricule</strong></td>
-                                <td><strong>Role</strong></td>
-                                <td><strong>Action</strong></td>
-                                
-                            </tr>
-                        
-                            <tr>
-                                <td>diop</td>
-                                <td>bineta</td>
-                                <td>bin@gmail.com</td>
-                                <td>Z6S0WVUL</td>
-                                <td>Administrateur</td>
-                                <td><a href="modifier.php"><img src="image/edit.png"  style="width: 2rem;height: 2rem;" alt="">
-                                <td><a href="archiver.php"><img src="image/sup.svg" style="width: 2rem;height: 2rem;" alt=""></a></td>
-                                <td><a href="change.php"></a><img src="image/swap.png" style="width: 2rem;height: 2rem;" alt=""></a></td></td>
-                            </tr>
-                        </table>
-                    </div>
+
                 </div>
                
             </div>

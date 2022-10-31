@@ -12,17 +12,18 @@
   
   
 </head>
-<body>
+<body style="background-color:  cornflowerblue;">
 
 <?php
-/* connection */
-    include("action.php");
-    /* inscription */
+ /*  include('action.php'); */
 
-
-
-
-    ?>
+ include("model/model.php");
+ $requete=new ModelUser();
+ if (isset($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['rol'],$_POST['mdp1'])) {
+    $requete->inscription($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['rol'],$_POST['mdp1']);
+ }
+ ?>
+   
     <div class="container">
     <!-- Partie 1 image -->
 
@@ -37,69 +38,96 @@
         <div class="w-50 card mx-auto"  >
             
            
-            <form  method="POST" action="action.php" class="formulaire mx-auto"  enctype="multipart/form-data">
+            <form  method="post" id="form" action="page-inscription.php" class="form mx-auto"  enctype="multipart/form-data">
                 <div class="logo">
             <img  src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"></div>
             <hr class="ligne" style="color: primary;">
             <h3 class="titre text-center">Formulaire D'inscription</h3>
                 <!-- Formulaire -->
-                <div class="row">
+  <div class="row">
                     <!-- col-1 -->
-                <div class="col-lg-6">
-                <div class="mb-3">
-                    <label for="nom" class="form-label">Nom*</label>
-                    <input type="text" class="form-control" id="nom" name="nom">
+         <div class="col-lg-6">
+             <div class="input-control mb-3">
+                <label for="input1" class="form-label">Nom <span style="color: red;">*</span></label>
+
+                 <input type="text" class="form-control p-3 rounded-0" id="nom" name="nom" required>
+                 <div class="invalid-feedback d-none" id="champ-reqNom">champs requis</div>
                     
-                </div>
-                <div class="mb-3">
-                    <label for="mail" class="form-label">Email*</label>
-                    <input type="mail" class="form-control" id="mail" name="mail">
+            </div>
+            <div class="input-control mb-3">
+                <label for="input1" class="form-label">Mail <span style="color: red;">*</span></label>
                     
-               
-                <div class="mb-3">
-                    <label for="mdp" class="form-label">Mot de passe*</label>
-                    <input type="password" class="form-control" id="mdp" name="mdp1" >
-                </div>
-                </div>
-               
-                   
-            <div class="mb-3">
-                <label for="image" class="form-label " >Photo*</label><br>
-                <input type="file" name="photo" />
+                  <input type="text" class="form-control p-3 rounded-0" id="mail" name="mail" required>
+                  <div class="valid-feedback">Email field is valid!</div>
+                 <div  class="invalid-feedback d-none" id="champ-reqEmail">champs requis</div>
+                 <div class="invalid-feedback d-none" id="email-invalid">email incorrect</div>
+                    
             </div>
 
+             
+        
+
+           
+            <div class="mb-3">
+                    
+                <div class="input-control mb-3">
+                <label for="input1" class="form-label">Mot de passe <span style="color: red;">*</span></label>
+                    
+                <input type="password" class="form-control p-3 rounded-0" id="mdp1" name="mdp1" required >
+                <div class="invalid-feedback d-none" id="champ-reqPass1">champs requis</div>
+
+                    
                 </div>
+            </div>
+               
+                   
+            <div class="input-control mb-3">
+                <label for="image" class="form-label">Photo</label>
+                
+              <input type="file" name="photo" class="form-control p-3 rounded-0">
+                
+            </div>
+
+ </div>
 
                 
                         <!-- col-2 -->
                 <div class="col-lg-6">
-                <div class="mb-3">
-                    <label for="prenom" class="form-label">Prénom*</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom">
+                <div class="input-control mb-3">
+                <label for="input1" class="form-label"> Prenom<span style="color: red;">*</span></label>
+                    <label for="prenom" class="form-label"></label>
+                    <input type="text" class="form-control p-3 rounded-0" id="prenom" name="prenom" required>
+                    <div class="invalid-feedback d-none" id="champ-reqPrenom">champs requis</div>
                     
                 </div>
 
  
-                <div class="mb-1">
+                <div class="input-control mb-1">
                 <div class="form-group">
-                    <label for="role">Role*</label>
-                    <select class="form-select" id="role" name="rol">
+                <label for="input4" class="form-label">Role<span style="color: red;">*</span></label>
+                    <select class="form-select p-3 rounded-0" id="rol" name="rol" required>
+
                     <option>Aministrateur</option>
                     <option>Utilisateur-simple</option>
                     
                     </select>
+                    <div class="invalid-feedback d-none" id="champ-reqRole">champs requis</div>
+                   
                 </div>
                 </div>
                                 
-                <div class="mb-3">
-                    <label for="mdp" class="form-label">Mot de passe*</label>
-                    <input type="password" class="form-control" id="mdp" name="mdp2">
+                <div class="input-control mb-3">
+                <label for="input4" class="form-label">Confirmer Mot de passe<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control p-3 rounded-0" id="mdp2" name="mdp2" required>
+                    <div class="invalid-feedback d-none" id="champ-reqPass2">champs requis</div>
+      <div class="invalid-feedback d-none" id="confirmation">les  mots de passe ne correspondent pas</div> 
+                    
                 </div>
                 </div>
                 </div>
                <div class="col-lg-12 col-md-12">
-                <button type="submit" name="submit" class="btn btn-primary w-100" >S'INSCRIRE</button></div><br>
-                <p><a href="#" class="text-orange">Se connecter?</a>  </p>
+                <button type="submit" name="submit" id="submit"  class="btn btn-primary w-100" >S'INSCRIRE</button></div><br>
+                <p><a href="#" class="text-orange">Se connecter?</a></p>
                 </form>
        </div>
     </div><br><br><br><br><br><br><br><br>
@@ -107,7 +135,7 @@
    <!--  <div class="card mx-auto" style="width: 40rem;height: 40rem;"> -->
    
    </div>
-   <script src="tp1.js"></script>
+   <script src="inscription.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

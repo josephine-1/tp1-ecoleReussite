@@ -15,14 +15,18 @@ if(
     isset($_POST['nom'])&&
     isset($_POST['prenom'])&&
     isset($_POST['mail'])&&
-  /*   isset($_POST['cycle'])&&*/
+  
     isset($_POST['mdp1'])&& 
-    isset($_POST['mdp2'])){ /* var_dump($_POST['photo']); */
+    isset($_POST['mdp2'])/* &&
+    isset($_POST['photo'])  */
+    
+    ){ /*  var_dump($_POST); */
 
 
 
 
       /* code matricule */
+     
         $length = 8;
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -35,21 +39,27 @@ if(
      
       
 
-        $ins=$newBD->prepare("insert into users (matricule,nom,prenom,mail,rol,mdp1,mdp2,date) values(?,?,?,?,?,?,?,now())");
-				$ins->execute(array($randomString,$_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['rol'],$_POST['mdp1']=md5($_POST['mdp1']),$_POST['mdp2']=md5($_POST['mdp2'])));
+        $ins=$newBD->prepare("insert into user (matricule,nom,prenom,mail,rol,mdp1,mdp2,date) values(?,?,?,?,?,?,?,now())");
+				$ins->execute(array($randomString,$_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['rol'],$_POST['mdp1']=md5($_POST['mdp1']),$_POST['mdp2']=md5($_POST['mdp2'])/* ,$_POST['photo'] */));
 
-    }
 
- 
-  /* if(isset($_POST)){
-    var_dump($_POST);
-}   */
-/* etablir la connexion 
-$ins=$pdo->prepare("insert into eleve(date,nom,prenom,daten,lieun,classe,cycle,login) values(now(),?,?,?,?,?,?,?)");
-				$ins->execute(array($nom,$prenom,$daten,$lieun,$classe,$cycle,$login));*/
+        
+       
+        
+    
 
- /* controle */ 
- 
+
+} 
+
+
+
+
+
+   
+
+
+ /* --------------Connexion---------- */
+
 ?>
 
 

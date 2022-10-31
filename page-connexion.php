@@ -11,10 +11,20 @@
   
   
 </head>
-<body>
-    <?php
-    include("action.php");
-    ?>
+<body style="background-color:  cornflowerblue;">
+  
+
+<?php
+ /*  include('action.php'); */
+
+ include("model/model.php");
+ $requete=new ModelUser();
+ if (isset($_POST['mail'],$_POST['mdp'])) {
+    $requete->login($_POST['mail'],$_POST['mdp']);
+ }
+ ?>
+
+
     <div class="container">
     <!-- Partie 1 image -->
 
@@ -28,7 +38,7 @@
         <div class="w-50 card mx-auto" >
             
            
-            <form action="#" method="POST" id="myForm"  class="formulaire mx-auto" >
+            <form action="page-connexion.php" method="POST" id="myForm"  class="formulaire mx-auto" >
                 <div class="logo">
             <img  src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"></div>
             <hr class="ligne" style="color: primary;">
@@ -36,17 +46,20 @@
                 <!-- Formulaire -->
                 
                 <div class="mb-3">
-                    <label for="mail" class="form-label">Email</label>
-                    <input type="mail" class="form-control" id="mail" name="mail">
+                <label for="input1" class="form-label">Mail <span style="color: red;">*</span></label>
                     
+                    <input type="mail" class="form-control" id="mail" name="mail">
+                   
                 </div>
                 <div class="mb-3">
-                    <label for="mdp" class="form-label">Mot de passe</label>
+                <label for="md1" class="form-label">Mot de passe <span style="color: red;">*</span></label>
+                    
+
                     <input type="password" class="form-control" id="mdp" name="mdp">
                 </div>
                <div class="col-lg-12 col-md-12">
-                <button type="submit" class="btn btn-primary w-100" id="btn" >SE CONNECTER</button></div><br>
-                <p><a href="#" class="text-orange">S'inscrire?</a>  </p>
+                <button type="submit" name="valider" class="btn btn-primary w-100" id="btn" >SE CONNECTER</button></div><br>
+                <p><a href="page-inscription.php" class="text-orange">S'inscrire?</a>  </p>
                 <span id="error"></span>
                 </form>
        </div>

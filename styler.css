@@ -1,3 +1,4 @@
+
 .container .sec1{
     position: relative;
     
@@ -33,6 +34,7 @@
 a:hover{
   color: orange !important;
 }
+
 .logo{
     display: flex;
     justify-content: center;

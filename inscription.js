@@ -174,7 +174,7 @@ return false;
     console.log("clicked");
   if((!checkEmail() && !checkmdp1() && !checkmdp2() && !checknom() && !checkprenom() && !checkroles()   ) || !checkEmail() || !checkmdp1() || !checkmdp2() || !checknom() || !checkprenom() || !checkroles() ){
     e.preventDefault()
-    alert("inscription réussie");
+   
   }
 
   })

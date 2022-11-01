@@ -9,7 +9,10 @@
     <title>page-userSimple</title>
 </head>
 <body >
-    <div class="container" style="border: 1px solid black;">
+<?php
+    include("model/model.php");
+    ?>
+    <div class="container">
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
                 <div>
@@ -42,6 +45,48 @@
 
                 </div>
                 <div class="row table">
+                <div class="col-lg-12">
+
+<!-- pour tableau -->
+<table class="table">
+    <thead>
+        <tr class="">
+            <th scope="col">Prenom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Matricule</th>
+            <th scope="col">date_inscription</th>
+            
+            <!-- <th scope="col">Actions</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $bdd=new ModelUser;
+          $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 ");
+          $lister->execute();
+          while ($row=$lister->fetch(PDO::FETCH_ASSOC)) {
+           $nom=$row['nom'];
+           $prenom=$row['prenom'];
+           $email=$row['mail'];
+           $matricule=$row['matricule'];
+           $role=$row['rol'];
+           $date_Act=$row['date_Act'];
+           echo'
+           <tr>
+           <td>'.$prenom.'</td>
+           <td>'.$nom.'</td>
+           <td>'.$email.'</td>
+           <td>'.$matricule.'</td>
+           <td>'.$date_Act.'</td>
+            </tr>
+           ';
+          }
+        ?>
+    </tbody>
+</table>
+
+</div>
 
                 </div>
                
@@ -49,5 +94,6 @@
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

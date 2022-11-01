@@ -15,6 +15,9 @@
     </style>
 </head>
 <body >
+    <?php
+    include("model/model.php");
+    ?>
     <div class="container" style="border: 1px solid  cornflowerblue;">
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">

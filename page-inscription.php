@@ -107,7 +107,7 @@
                 <label for="input4" class="form-label">Role<span style="color: red;">*</span></label>
                     <select class="form-select p-3 rounded-0" id="rol" name="rol" required>
 
-                    <option>Aministrateur</option>
+                    <option>Administrateur</option>
                     <option>Utilisateur-simple</option>
                     
                     </select>

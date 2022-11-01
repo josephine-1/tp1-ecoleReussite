@@ -15,6 +15,7 @@
   
 
 <?php
+
  /*  include('action.php'); */
 
  include("model/model.php");
@@ -23,6 +24,7 @@
     $requete->login($_POST['mail'],$_POST['mdp']);
  }
  ?>
+ 
 
 
     <div class="container">

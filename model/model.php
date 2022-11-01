@@ -17,15 +17,29 @@ class  ModelUser
     public function login($email,$motDepasse){
         session_start();
         try {
-           $sql= $this->newBD->prepare("SELECT mail,mdp1 FROM user WHERE mail=:mail");
-           $sql->execute(["mail"=>$email]);
-           $donnee=$sql->fetch();
-           if ( $donnee["mail"]==$email && $donnee["mdp1"]==$motDepasse) {
+            $sql = $this->newBD->prepare("SELECT id,mail,mdp1,rol,nom,prenom,matricule,etat FROM user ");   
+            $sql->execute(["mail" => $email]);
+           
+        //    var_dump($donnee);die;
+           while ($donnee = $sql->fetch()) {
+            if ($donnee["mail"]==$email && $donnee["mdp1"]==$motDepasse && $donnee["etat"]== 0) {
+                $_SESSION["matricule"]=$donnee["matricule"];
+                $_SESSION["nom"]=$donnee["nom"];
+                $_SESSION["prenom"]=$donnee["prenom"];
+                $_SESSION["mail"]=$donnee["mail"];
+                $_SESSION["rol"]=$donnee["rol"];
+                $_SESSION["mdp1"]=$donnee["mdp1"];
+                $_SESSION["etat"]=$donnee["etat"];
+                $_SESSION["date_Act"]=$donnee["date_Act"];
+               
+                if ($donnee["rol"] == "Administrateur") {
+                header("location:page-admin.php");
+                }else
+                    header("location:page-userSimple.php");
+            }else
+                    echo "l'utilisateur n'exist pas";
 
-           echo "l'utilisateur exist";
-           }else
-           echo "l'utilisateur n'exist pas";
-
+           }
         } catch (\Throwable $th) {
             //throw $th;
         }

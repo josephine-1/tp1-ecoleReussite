@@ -127,11 +127,11 @@
                                    <td>' . $matricule . '</td>
                                    <td>' . $role . '</td>
                                    <td style=""> 
-                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="(.$matricule.)">
-                                   <img src="image/edit.png" style="height:2rem;" alt="">
-</button>
+                                   <a type="button" href="modifier.php?matricule='.$matricule.'" class="btn btn-primary"  ">
+                                        <img src="image/edit.png" style="height:2rem;" alt="">
+                                    </a>
                                    
-<button type="button" class="btn btn-danger"  >
+<button type="button" class="btn btn-danger" >
 <img src="image/delate.jpg" style="height:2rem;" alt="">
 </button>
 
@@ -148,7 +148,7 @@
                                    ';
                                 }
                                 ?>
-
+<!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
                             </tbody>
                         </table>
                         <!-- Pagination -->

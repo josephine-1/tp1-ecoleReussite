@@ -17,8 +17,7 @@ if(
     isset($_POST['mail'])&&
   
     isset($_POST['mdp1'])&& 
-    isset($_POST['mdp2'])/* &&
-    isset($_POST['photo'])  */
+    isset($_POST['mdp2'])
     
     ){ /*  var_dump($_POST); */
 

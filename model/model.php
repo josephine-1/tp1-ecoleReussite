@@ -124,14 +124,16 @@ class  ModelUser
 
   } */
   /* pour modifier */
-  public function modifie ($nom, $prenom, $email, $rol, $motDepasse){
-
+/*   public function modifie ($nom, $prenom, $email, $rol, $motDepasse){
+    
     $id=$_GET['id'];
-
-    $req=$this->newBD->prepare("SELECT * FROM user WHERE id=?");
+$req=$this->newBD->prepare("SELECT * FROM user WHERE id=?");
 $req->execute([$id]);
 $req_user=$req->fetch();
+
+
+
   }
- 
+  */
 
 }

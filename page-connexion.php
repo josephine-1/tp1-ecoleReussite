@@ -20,7 +20,7 @@
 
     /*  include('action.php'); */
 
-    include("model/model.php");
+     include("model/model.php"); 
     $requete = new ModelUser();
     if (isset($_POST['mail'], $_POST['mdp'])) {
         $requete->login($_POST['mail'], $_POST['mdp']);

@@ -86,7 +86,7 @@
 
 
                             <div class="input-control mb-3">
-                                <label for="phpto" class="form-label">Photo</label>
+                                <label for="photo" class="form-label">Photo</label>
 
                                 <input type="file" name="image" id="photo" class="form-control p-3 rounded-0" accept=".jpg,.jpeg,.png" value="">
 
@@ -132,7 +132,7 @@
                     <div class="col-lg-12 col-md-12">
                         <button type="submit" name="submit" id="submit" class="btn btn-primary w-100">S'INSCRIRE</button>
                     </div><br>
-                    <p><a href="#" class="text-orange">Se connecter?</a></p>
+                    <p><a href="page-connexion.php" class="text-orange">Se connecter?</a></p>
                 </form>
             </div>
         </div><br><br><br><br><br><br><br><br>

@@ -21,7 +21,44 @@
     <?php
     include("model/model.php");
     ?>
-    <div class="container" style="border: 1px solid  cornflowerblue;">
+
+
+
+    <div class="container">
+        <!-- Form modal -->
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Voulez vous vraiment modifier?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <a href="modifier.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OUI</button></a>
+                        <a href="page-admin.php"><button type="button" class="btn btn-primary">NON</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
                 <div>
@@ -40,15 +77,17 @@
                 </div>
 
             </div>
-            <div class="part2 col-lg-9">
+            <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
-                    <div class="col-lg-4 mt-5">
-                        <p>image et matricule</p>
+                    <div class="col-lg-6 ">
+                        <img src="image/etudiante.jpg" style="height:10rem;" alt="">
                     </div>
-                    <div class="col-lg-6 mt-5">
-                        <input type="text" placeholder="Rechercher">
+
+                    <div class="col-lg-3 mt-5">
+                        <input class="form-control me-2" type="search" style="width: 12rem;" placeholder="Search" aria-label="Search">
+
                     </div>
-                    <div class="col-lg-2 mt-5">
+                    <div class="col-lg-3 mt-5">
                         <a href="page-connexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
                     </div>
                 </div>
@@ -70,43 +109,58 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $bdd=new ModelUser;
-                                  $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 ");
-                                  $lister->execute();
-                                  while ($row=$lister->fetch(PDO::FETCH_ASSOC)) {
-                                   $nom=$row['nom'];
-                                   $prenom=$row['prenom'];
-                                   $email=$row['mail'];
-                                   $matricule=$row['matricule'];
-                                   $role=$row['rol'];
-                                   echo'
+                                $bdd = new ModelUser;
+                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 ");
+                                $lister->execute();
+                                while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                    
+                                    $nom = $row['nom'];
+                                    $prenom = $row['prenom'];
+                                    $email = $row['mail'];
+                                    $matricule = $row['matricule'];
+                                    $role = $row['rol'];
+                                    echo '
                                    <tr>
-                                   <td>'.$prenom.'</td>
-                                   <td>'.$nom.'</td>
-                                   <td>'.$email.'</td>
-                                   <td>'.$matricule.'</td>
-                                   <td>'.$role.'</td>
+                                   <td>' . $prenom . '</td>
+                                   <td>' . $nom . '</td>
+                                   <td>' . $email . '</td>
+                                   <td>' . $matricule . '</td>
+                                   <td>' . $role . '</td>
                                    <td style=""> 
-                                   <span>Edit</span>
-                                   <span>Archiver</span>
-                                   <span>change-role</span>
+                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="(.$matricule.)">
+                                   <img src="image/edit.png" style="height:2rem;" alt="">
+</button>
+                                   
+<button type="button" class="btn btn-danger"  >
+<img src="image/delate.jpg" style="height:2rem;" alt="">
+</button>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<img src="image/swap.png" style="height:2rem;" alt="">
+</button>
+
+
+
+                                   
+                                  
                                    </td>
                                     </tr>
                                    ';
-                                  }
+                                }
                                 ?>
+
                             </tbody>
                         </table>
-<!-- Pagination -->
-<nav aria-label="Page navigation example" id="pagination">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation example" id="pagination">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </nav>
 
                     </div>
                 </div>
@@ -115,6 +169,7 @@
         </div>
 
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

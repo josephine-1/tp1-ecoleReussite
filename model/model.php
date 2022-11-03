@@ -25,6 +25,7 @@ class  ModelUser
             //    var_dump($donnee);die;
             while ($donnee = $sql->fetch()) {
                 if ($donnee["mail"] == $email && $donnee["mdp1"] == $motDepasse && $donnee["etat"] == 0) {
+                    $_SESSION["id"] = $donnee["id"];
                     $_SESSION["matricule"] = $donnee["matricule"];
                     $_SESSION["nom"] = $donnee["nom"];
                     $_SESSION["prenom"] = $donnee["prenom"];
@@ -83,10 +84,10 @@ class  ModelUser
             //throw $th;
         }
     }
-    
+    /* fonction affichage */
     public function affichage ($nom, $prenom, $email, $rol, $motDepasse){
 
-
+        
         $requete = "SELECT * FROM  user ORDER BY id ASC";
         $result =  $this->newBD->query($requete);
         if (!$result){
@@ -107,6 +108,30 @@ class  ModelUser
             $result->closeCursor();
         
     }
-    /* pour l'affichage de la table */
-  
-} 
+    
+    /* pour supprimer */
+  /* function delateUser($delaitematricule){
+    $.ajax(
+        {
+            url:"delate.php";
+            type:'post',
+            data:{
+                deletesend:$delaitematricule;
+            }
+            success:function
+        }
+    )
+
+  } */
+  /* pour modifier */
+  public function modifie ($nom, $prenom, $email, $rol, $motDepasse){
+
+    $id=$_GET['id'];
+
+    $req=$this->newBD->prepare("SELECT * FROM user WHERE id=?");
+$req->execute([$id]);
+$req_user=$req->fetch();
+  }
+ 
+
+}

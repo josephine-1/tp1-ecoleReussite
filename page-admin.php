@@ -1,4 +1,16 @@
+<?php
+/* session_start();
+$req=new ModelUser();
+$sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
+        $sql->execute([
+            
+            'matricule'=> $_SESSION['matricule']
+        ]); */
 
+/* $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc") */;
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +34,14 @@
 <body>
 <h3 class="text-center text-secondary">ADMINISTRATEUR</h3>
     <?php
-    include("model/model.php");
+    
+    include("model/model.php"); 
+   /*  include("traitement-photo.php"); */
+  /*   if($_SESSION['id']){
+        $idSession=$_SESSION['id'];
+    }*/
     ?>
-
+ 
 
 
     <div class="container">
@@ -63,7 +80,7 @@
 
 
         <div class="row  m-5">
-            <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
+            <div class="part1 col-lg-3  " style="border: 1px solid blue">
                 <div>
                     <div class="logo ">
                         <img class="logo mx-auto" src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"><br><br>
@@ -83,7 +100,22 @@
             <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
                     <div class="col-lg-6 ">
-                        <img src="image/etudiante.jpg" style="height:10rem;" alt="">
+                       <!--  <p> 
+                            <?php
+                            /* echo $data["matricule"]; */
+                            ?>
+                        </p> -->
+         <!-- Recupèration de la photo à la base de données -->
+          <?php
+          
+          /* 
+          $newBD=new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
+          $state = $newBD->prepare("SELECT photo FROM photo WHERE user=:user");
+          $state->execute(['user'=> $idSession]);
+          $rows = $state->fetch(PDO::FETCH_ASSOC); */
+          ?>
+          <!-- ici nous avons l'image du profil -->
+          <img src="image/etudiante.jpg" class="rounded-circle border p-1  " height="200" width="200" />
                     </div>
 
                     <div class="col-lg-3 mt-5">

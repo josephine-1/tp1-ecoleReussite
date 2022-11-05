@@ -61,7 +61,7 @@
 
 
         <div class="row  m-5">
-            <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
+            <div class="part1 col-lg-3  " style="border: 1px solid blue">
                 <div>
                     <div class="logo ">
                         <img class="logo mx-auto" src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"><br><br>
@@ -81,7 +81,7 @@
             <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
                     <div class="col-lg-6 ">
-                        <img src="image/etudiante.jpg" style="height:10rem;" alt="">
+                    <img src="image/etudiante.jpg" class="rounded-circle border p-1  " height="200" width="200" />
                     </div>
 
                     <div class="col-lg-3 mt-5">

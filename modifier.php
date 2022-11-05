@@ -20,9 +20,7 @@
     $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
 
     if(isset($_GET['matricule'])){
-        // $nom=$_donnee['nom'];
-        // $prenom=$_donnee['prenom'];
-        // $mail=$_donnee['mail'];
+       
         $matricule = $_GET['matricule'];
         $sql=$newBD->prepare("SELECT * from user  WHERE matricule=:matricule");
         $sql->execute(['matricule'=> $matricule]);

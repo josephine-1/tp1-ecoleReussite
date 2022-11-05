@@ -112,7 +112,7 @@
                                     <select class="form-select p-3 rounded-0" id="rol" name="rol" required>
 
                                         <option>Administrateur</option>
-                                        <option>Utilisateur-simple</option>
+                                        <option>Utilisateur_simple</option>
 
                                     </select>
                                     <div class="invalid-feedback d-none" id="champ-reqRole">champs requis</div>

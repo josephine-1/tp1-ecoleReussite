@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +18,7 @@
 </head>
 
 <body>
-<h3 class="text-center text-secondary">ADMINISTRATEUR</h3>
+<h3 class="text-center text-secondary">Liste ARCHIVER</h3>
     <?php
     include("model/model.php");
     ?>
@@ -74,7 +72,7 @@
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
                         <div class="lesUsers text-center " style="color: black;">
                             <a href="page-admin.php"><strong>actifs</strong></a><br>
-                            <a href="page_archiver.php"><strong> archivés</strong></a>
+                            <a href="archivés.php"><strong> archivés</strong></a>
                         </div>
                     </div>
                 </div>
@@ -113,7 +111,7 @@
                             <tbody>
                                 <?php
                                 $bdd = new ModelUser;
-                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 ");
+                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=1 ");
                                 $lister->execute();
                                 while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
                                     
@@ -130,21 +128,14 @@
                                    <td>' . $matricule . '</td>
                                    <td>' . $role . '</td>
                                    <td style=""> 
-                                   <a  href="modifier.php?matricule='.$matricule.'" class="btn btn-primary" ">
-                                        <img src="image/edit.png" style="height:2rem;" alt="">
+                                   <a  href="traitementDelete.php?matriculDA='.$matricule.'" class="btn btn-primary" ">
+                                        <img src="image/archiver.png" style="height:2rem;" alt="">
                                     </a>
                                    
-                                    <a href="traitementDelete.php?matricule='. $matricule .'" type="button" class="btn btn-danger" >
-                                    <img src="image/delate.jpg" style="height:2rem;" alt="">
-                                    </a>
-
-                                    <a href="traitementSwap.php?matricule='. $matricule .'" type="button" class="btn btn-success" >
-                                    <img src="image/swap.png" style="height:2rem;" alt=""  >
-                                    </a>
 
 
 
-                                   
+                    
                                   
                                    </td>
                                     </tr>

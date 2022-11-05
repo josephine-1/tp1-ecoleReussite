@@ -14,6 +14,7 @@
     <?php
     include("model/model.php");
     ?>
+    <h1 class="text-center text-secondary">Utilisateur Simple</h1>
     <div class="container">
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
@@ -26,8 +27,8 @@
                         </div>
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
                         <div class="lesUsers text-center " style="color: black;">
-                            <a href="actifs.php"><strong> actifs</strong></a><br>
-                            <a href="archivés.php"><strong> archivés</strong></a>
+                            <a href="page-admin.php"><strong> actifs</strong></a><br>
+                            <a href="page_archiver"><strong> archivés</strong></a>
                         </div>
                     </div>
                 </div>

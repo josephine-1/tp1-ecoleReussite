@@ -58,7 +58,7 @@ class  ModelUser
         }
         try {
             $sql = $this->newBD->prepare("INSERT into user (matricule,nom,prenom,mail,rol,mdp1,date_Act) 
-                                            values(:matricule,:nom,:prenom,:mail,:rol,:mdp1,:date_Act)");
+                                            values(:matricule,:nom,:prenom,:mail,:rol,md5(:mdp1),:date_Act)");
             $sql->execute([
                 "matricule" => $randomString,
                 "nom" => $nom,

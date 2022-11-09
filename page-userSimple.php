@@ -1,3 +1,6 @@
+<?php
+ session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +28,7 @@
      ?>
     <div class="container">
         <div class="row  m-5">
-            <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
+            <div class="part1 col-lg-3  " style="border: 1px solid blue;">
                 <div>
                     <div class="logo ">
                         <img class="logo mx-auto" src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"><br><br>
@@ -55,7 +58,11 @@
           ?>
           <!-- ici nous avons l'image du profil -->
           <img src="image/eleve.jpg" class="rounded-circle border p-1  " height="200" width="200" />
-                    </div>
+          <p><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></p> 
+          <p>
+            <?php /* echo $_SESSION['matricule'] */?>
+        </p>       
+        </div>
 
                     <div class="col-lg-3 mt-5">
                         <input class="form-control me-2" type="search" style="width: 12rem;" placeholder="Search" aria-label="Search">
@@ -84,7 +91,8 @@
                             <tbody>
                                 <?php
                                 $bdd = new ModelUser;
-                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 ");
+                                $id = $_SESSION["id"];
+                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
                                 $lister->execute();
                                 while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
                                     $nom = $row['nom'];

@@ -1,11 +1,12 @@
 <?php
-/* session_start();
+  session_start();/*
 $req=new ModelUser();
 $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
         $sql->execute([
             
             'matricule'=> $_SESSION['matricule']
-        ]); */
+            
+        ]);  */
 
 /* $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc") */;
 
@@ -99,7 +100,8 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
             </div>
             <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
-                    <div class="col-lg-6 ">
+                    <div class="col-lg-3 ">
+                       
                        <!--  <p> 
                             <?php
                             /* echo $data["matricule"]; */
@@ -107,22 +109,38 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                         </p> -->
          <!-- Recupèration de la photo à la base de données -->
           <?php
-          
+           /*  $bdd = new ModelUser; */
           /* 
           $newBD=new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
           $state = $newBD->prepare("SELECT photo FROM photo WHERE user=:user");
           $state->execute(['user'=> $idSession]);
           $rows = $state->fetch(PDO::FETCH_ASSOC); */
+          
           ?>
           <!-- ici nous avons l'image du profil -->
+         <!--   <h4>
+            <?php /* echo $_SESSION['matricule']; */ ?>
+        </h4> 
+ -->
+         <!--  <div class="col-8  d-flex justify-content-center align-items-center">
+        <h1 style="color: #2A7282;"> Bienvenue </h1>
+      </div> --> 
+
           <img src="image/etudiante.jpg" class="rounded-circle border p-1  " height="200" width="200" />
-                    </div>
+                 
+        </div>
+        <div class="col-lg-3 mt-5">
+        <H3><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></H3> 
+        </div>
+       
 
-                    <div class="col-lg-3 mt-5">
-                        <input class="form-control me-2" type="search" style="width: 12rem;" placeholder="Search" aria-label="Search">
-
+                    <div class="col-lg-5 mt-5">
+                        <form method="post" action="">
+                        <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
+                        <!-- <button></button>  -->  
+                    </form>
                     </div>
-                    <div class="col-lg-3 mt-5">
+                    <div class="col-lg-1 mt-5">
                         <a href="page-connexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
                     </div>
                 </div>
@@ -144,11 +162,15 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                             </thead>
                             <tbody>
                                 <?php
+                                
                                 $bdd = new ModelUser;
-                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 ");
-                                $lister->execute();
+                                $id = $_SESSION["id"];
+                               $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
+                               $lister->execute();
+                                 if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
+                                    $monNom = $_POST['recherche']; 
                                 while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
-                                    
+                                     if ($row['nom'] == $monNom){ 
                                     $nom = $row['nom'];
                                     $prenom = $row['prenom'];
                                     $email = $row['mail'];
@@ -181,7 +203,44 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                                    </td>
                                     </tr>
                                    ';
-                                }
+                                } }
+                            }else {
+                                while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                   /*  if ($row['nom'] == $monNom){  */
+                                   $nom = $row['nom'];
+                                   $prenom = $row['prenom'];
+                                   $email = $row['mail'];
+                                   $matricule = $row['matricule'];
+                                   $role = $row['rol'];
+                                   echo '
+                                  <tr>
+                                  <td>' . $prenom . '</td>
+                                  <td>' . $nom . '</td>
+                                  <td>' . $email . '</td>
+                                  <td>' . $matricule . '</td>
+                                  <td>' . $role . '</td>
+                                  <td style=""> 
+                                  <a  href="modifier.php?matricule='.$matricule.'" class="btn btn-primary" ">
+                                       <img src="image/edit.png" style="height:2rem;" alt="">
+                                   </a>
+                                  
+                                   <a href="traitementDelete.php?matricule='. $matricule .'" type="button" class="btn btn-danger" >
+                                   <img src="image/delate.jpg" style="height:2rem;" alt="">
+                                   </a>
+
+                                   <a href="traitementSwap.php?matricule='. $matricule .'" type="button" class="btn btn-success" >
+                                   <img src="image/swap.png" style="height:2rem;" alt=""  >
+                                   </a>
+
+
+
+                                  
+                                 
+                                  </td>
+                                   </tr>
+                                  ';
+                               /* } */
+                            } }/**/
                                 ?>
 <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
                             </tbody>

@@ -19,8 +19,8 @@ class  ModelUser
     {
         session_start();
         try {
-            $sql = $this->newBD->prepare("SELECT id,mail,mdp1,rol,nom,prenom,matricule,etat FROM user ");
-            $sql->execute(["mail" => $email]);
+            $sql = $this->newBD->prepare("SELECT id,mail,mdp1,rol,nom,prenom,matricule,etat FROM user WHERE mail=:mail");
+            $sql->execute([":mail" => $email]);
 
             //    var_dump($donnee);die;
             while ($donnee = $sql->fetch()) {

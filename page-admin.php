@@ -45,7 +45,7 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
  
 
 
-    <div class="container">
+    <div class="container-fluid">
         <!-- Form modal -->
         <!-- Button trigger modal -->
 
@@ -81,7 +81,7 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
 
 
         <div class="row  m-5">
-            <div class="part1 col-lg-3  " style="border: 1px solid blue">
+            <div class="part1 col-lg-3  " style="border: 10px solid rgba(252, 220, 181, 1);">
                 <div>
                     <div class="logo ">
                         <img class="logo mx-auto" src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"><br><br>
@@ -91,8 +91,9 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                         </div>
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
                         <div class="lesUsers text-center " style="color: black;">
-                            <a href="page-admin.php"><strong>actifs</strong></a><br>
-                            <a href="page_archiver.php"><strong> archivés</strong></a>
+                            <a href="page-admin.php"><strong>actifs</strong></a><br><br>
+                            <a href="page_archiver.php"><strong> archivés</strong></a><br><br>
+                            <a href="page-inscription.php"><strong> inscrire</strong></a>
                         </div>
                     </div>
                 </div>

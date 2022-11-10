@@ -1,12 +1,24 @@
 <?php
-  session_start();/*
+  session_start();
+/*   include("model/model.php"); */
+  $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
+ 
+ /*  $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
+        $sql->execute([
+            
+            'matricule'=> $_SESSION['matricule']
+            
+        ]); */
+/*   
+ 
+  
 $req=new ModelUser();
 $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
         $sql->execute([
             
             'matricule'=> $_SESSION['matricule']
             
-        ]);  */
+        ]);   */
 
 /* $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc") */;
 
@@ -127,11 +139,20 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
         <h1 style="color: #2A7282;"> Bienvenue </h1>
       </div> --> 
 
-          <img src="image/etudiante.jpg" class="rounded-circle border p-1  " height="200" width="200" />
+      <?php
+      $matricule = $_SESSION["matricule"];
+        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
+          $state->execute(['matricule'=> $matricule]);
+          $rows = $state->fetch(PDO::FETCH_ASSOC);  
+          ?>
+          <!-- ici nous avons l'image du profil -->
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="100" width="100" />
+    
+         
                  
         </div>
         <div class="col-lg-3 mt-5">
-        <H3><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></H3> 
+         <H3><?php  echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></H3>  
         </div>
        
 
@@ -142,7 +163,7 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                     </form>
                     </div>
                     <div class="col-lg-1 mt-5">
-                        <a href="page-connexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
+                        <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
                     </div>
                 </div>
                 <div class="row">

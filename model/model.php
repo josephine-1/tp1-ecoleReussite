@@ -2,7 +2,7 @@
 class  ModelUser
 {
     var $newBD;
-    public function __construct()
+    /* public */ function __construct()
     {
         try {
 
@@ -15,7 +15,7 @@ class  ModelUser
 
     
 
-    public function login($email, $motDepasse)
+    /* public */ function login($email, $motDepasse)
     {
         session_start();
         try {
@@ -33,6 +33,7 @@ class  ModelUser
                     $_SESSION["rol"] = $donnee["rol"];
                     $_SESSION["mdp1"] = $donnee["mdp1"];
                     $_SESSION["etat"] = $donnee["etat"];
+                    $_SESSION["photo"] = $donnee["photo"];
                     $_SESSION["date_Act"] = $donnee["date_Act"];
 
                     if ($donnee["rol"] == "Administrateur") {
@@ -47,7 +48,7 @@ class  ModelUser
         }
     }
 
-    public function inscription($nom, $prenom, $email, $rol, $motDepasse)
+   /*  public function inscription($nom, $prenom, $email, $rol, $motDepasse)
     {
         $length = 8;
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -69,6 +70,12 @@ class  ModelUser
                 "date_Act" => date("Y-m-d H:i:s")
 
             ]);
+            $photo=file_get_contents($_FILES("photo"));
+            $ins=$this->newBD->prepare("INSERT into user(photo) values(:photo)");
+                $ins->bindParam(1, $photo); 
+                 $ins->execute();
+             */
+            
 
 
             /* pour l'affichage */
@@ -80,12 +87,23 @@ class  ModelUser
            }else
            echo "l'utilisateur n'exist pas";
  */
-        } catch (\Throwable $th) {
+       /*  } catch (\Throwable $th) { */
             //throw $th;
-        }
-    }
+        /* } *//* 
+    } */
     /* fonction affichage */
-    public function affichage ($nom, $prenom, $email, $rol, $motDepasse){
+
+
+
+
+
+
+
+
+
+
+
+   /*  public */ function affichage ($nom, $prenom, $email, $rol, $motDepasse){
 
         
         $requete = "SELECT * FROM  user ORDER BY id ASC";

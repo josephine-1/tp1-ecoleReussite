@@ -1,5 +1,6 @@
 <?php
  session_start();
+ $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +58,15 @@
           $rows = $state->fetch(PDO::FETCH_ASSOC); */
           ?>
           <!-- ici nous avons l'image du profil -->
-          <img src="image/eleve.jpg" class="rounded-circle border p-1  " height="200" width="200" />
+          <?php
+      $matricule = $_SESSION["matricule"];
+        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
+          $state->execute(['matricule'=> $matricule]);
+          $rows = $state->fetch(PDO::FETCH_ASSOC);  
+          ?>
+          <!-- ici nous avons l'image du profil -->
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="100" width="100" />
+    
           
               
         </div>
@@ -70,7 +79,7 @@
 
                     </div>
                     <div class="col-lg-1 mt-5">
-                        <a href="page-connexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
+                        <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
                     </div>
                 </div>
                 <div class="row table">

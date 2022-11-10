@@ -57,7 +57,7 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
  
 
 
-    <div class="container-fluid">
+    <div class="container">
         <!-- Form modal -->
         <!-- Button trigger modal -->
 

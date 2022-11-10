@@ -28,7 +28,7 @@
      } */
      
      ?>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 10px solid rgba(252, 220, 181, 1);">
                 <div>

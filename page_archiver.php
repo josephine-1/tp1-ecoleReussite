@@ -1,7 +1,7 @@
 <?php
- session_start();
- /*   include("model/model.php"); */
-   $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
+session_start();
+/*   include("model/model.php"); */
+$newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<h3 class="text-center text-secondary">Liste ARCHIVER</h3>
+    <h3 class="text-center text-secondary">Liste ARCHIVER</h3>
     <?php
     include("model/model.php");
     ?>
@@ -86,25 +86,25 @@
             <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
                     <div class="col-lg-6">
-                    <?php
-      $matricule = $_SESSION["matricule"];
-        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
-          $state->execute(['matricule'=> $matricule]);
-          $rows = $state->fetch(PDO::FETCH_ASSOC);  
-          ?>
-          <!-- ici nous avons l'image du profil -->
-          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="250" width="200" />
+                        <?php
+                        $matricule = $_SESSION["matricule"];
+                        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
+                        $state->execute(['matricule' => $matricule]);
+                        $rows = $state->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <!-- ici nous avons l'image du profil -->
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="250" width="200" />
                     </div>
 
                     <div class="col-lg-5 mt-5">
-                    <form method="post" action="">
-                        <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
-                        <!-- <button></button>  -->  
-                    </form>
+                        <form method="post" action="">
+                            <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
+                            <!-- <button></button>  -->
+                        </form>
 
                     </div>
                     <div class="col-lg-1 mt-5">
-                    <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
+                        <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
                     </div>
                 </div>
                 <div class="row">
@@ -129,16 +129,16 @@
                                 $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=1 ");
                                 $lister->execute();
                                 if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
-                                    $monNom = $_POST['recherche']; 
-                               
-                                while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
-                                     if ($row['nom'] == $monNom){
-                                    $nom = $row['nom'];
-                                    $prenom = $row['prenom'];
-                                    $email = $row['mail'];
-                                    $matricule = $row['matricule'];
-                                    $role = $row['rol'];
-                                    echo '
+                                    $monNom = $_POST['recherche'];
+
+                                    while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                        if ($row['nom'] == $monNom) {
+                                            $nom = $row['nom'];
+                                            $prenom = $row['prenom'];
+                                            $email = $row['mail'];
+                                            $matricule = $row['matricule'];
+                                            $role = $row['rol'];
+                                            echo '
                                    <tr>
                                    <td>' . $prenom . '</td>
                                    <td>' . $nom . '</td>
@@ -146,7 +146,7 @@
                                    <td>' . $matricule . '</td>
                                    <td>' . $role . '</td>
                                    <td style=""> 
-                                   <a  href="traitementDelete.php?matriculDA='.$matricule.'" class="btn btn-primary" ">
+                                   <a  href="traitementDelete.php?matriculDA=' . $matricule . '" class="btn btn-primary" ">
                                         <img src="image/archiver.png" style="height:2rem;" alt="">
                                     </a>
                                    
@@ -158,7 +158,9 @@
                                    </td>
                                     </tr>
                                    ';
-                                }}}else {
+                                        }
+                                    }
+                                } else {
                                     while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
                                         /*  if ($row['nom'] == $monNom){  */
                                         $nom = $row['nom'];
@@ -174,15 +176,15 @@
                                        <td>' . $matricule . '</td>
                                        <td>' . $role . '</td>
                                        <td style=""> 
-                                       <a  href="modifier.php?matricule='.$matricule.'" class="btn btn-primary" ">
+                                       <a  href="modifier.php?matricule=' . $matricule . '" class="btn btn-primary" ">
                                             <img src="image/edit.png" style="height:2rem;" alt="">
                                         </a>
                                        
-                                        <a href="traitementDelete.php?matricule='. $matricule .'" type="button" class="btn btn-danger" >
+                                        <a href="traitementDelete.php?matricule=' . $matricule . '" type="button" class="btn btn-danger" >
                                         <img src="image/delate.jpg" style="height:2rem;" alt="">
                                         </a>
      
-                                        <a href="traitementSwap.php?matricule='. $matricule .'" type="button" class="btn btn-success" >
+                                        <a href="traitementSwap.php?matricule=' . $matricule . '" type="button" class="btn btn-success" >
                                         <img src="image/swap.png" style="height:2rem;" alt=""  >
                                         </a>
      
@@ -193,10 +195,11 @@
                                        </td>
                                         </tr>
                                        ';
-                                }}
+                                    }
+                                }
 
                                 ?>
-<!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+                                <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
                             </tbody>
                         </table>
                         <!-- Pagination -->

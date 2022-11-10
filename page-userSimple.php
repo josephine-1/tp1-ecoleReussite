@@ -1,6 +1,6 @@
 <?php
- session_start();
- $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
+session_start();
+$newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,16 +18,16 @@
     <?php
     include("model/model.php");
     ?>
-  
+
     <?php
-    
+
     /*  include("model/model.php"); */
-     /* include("traitement-photo.php");
+    /* include("traitement-photo.php");
      if($_SESSION['id']){
          $idSession=$_SESSION['id'];
      } */
-     
-     ?>
+
+    ?>
     <div class="container">
         <div class="row  m-5">
             <div class="part1 col-lg-3  " style="border: 10px solid rgba(252, 220, 181, 1);">
@@ -51,36 +51,36 @@
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
                     <div class="col-lg-3 ">
                         <!-- Recupèration de la photo à la base de données -->
-          <?php
-         /*  
+                        <?php
+                        /*  
           $newBD=new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
           $state = $newBD->prepare("SELECT photo FROM photo WHERE user=:user");
           $state->execute(['user'=> $idSession]);
           $rows = $state->fetch(PDO::FETCH_ASSOC); */
-          ?>
-          <!-- ici nous avons l'image du profil -->
-          <?php
-      $matricule = $_SESSION["matricule"];
-        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
-          $state->execute(['matricule'=> $matricule]);
-          $rows = $state->fetch(PDO::FETCH_ASSOC);  
-          ?>
-          <!-- ici nous avons l'image du profil -->
-          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
-    
-          
-              
-        </div>
-        <div class="col-lg-3 mt-5">
-        <h3><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></h3> 
-        <h6><?php echo $_SESSION['matricule']?></h6> 
-        </div>
+                        ?>
+                        <!-- ici nous avons l'image du profil -->
+                        <?php
+                        $matricule = $_SESSION["matricule"];
+                        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
+                        $state->execute(['matricule' => $matricule]);
+                        $rows = $state->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <!-- ici nous avons l'image du profil -->
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
 
-        <div class="col-lg-5 mt-5">
+
+
+                    </div>
+                    <div class="col-lg-3 mt-5">
+                        <h3><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></h3>
+                        <h6><?php echo $_SESSION['matricule'] ?></h6>
+                    </div>
+
+                    <div class="col-lg-5 mt-5">
                         <form method="post" action="">
-                        <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
-                        <!-- <button></button>  -->  
-                    </form>
+                            <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
+                            <!-- <button></button>  -->
+                        </form>
                     </div>
                     <div class="col-lg-1 mt-5">
                         <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
@@ -109,16 +109,16 @@
                                 $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
                                 $lister->execute();
                                 if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
-                                    $monNom = $_POST['recherche']; 
-                                while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
-                                    if ($row['nom'] == $monNom){
-                                    $nom = $row['nom'];
-                                    $prenom = $row['prenom'];
-                                    $email = $row['mail'];
-                                    $matricule = $row['matricule'];
-                                    $role = $row['rol'];
-                                    $date_Act = $row['date_Act'];
-                                    echo '
+                                    $monNom = $_POST['recherche'];
+                                    while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                        if ($row['nom'] == $monNom) {
+                                            $nom = $row['nom'];
+                                            $prenom = $row['prenom'];
+                                            $email = $row['mail'];
+                                            $matricule = $row['matricule'];
+                                            $role = $row['rol'];
+                                            $date_Act = $row['date_Act'];
+                                            echo '
            <tr>
            <td>' . $prenom . '</td>
            <td>' . $nom . '</td>
@@ -127,7 +127,9 @@
            <td>' . $date_Act . '</td>
             </tr>
            ';
-                                }}}else{
+                                        }
+                                    }
+                                } else {
                                     while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
                                         $nom = $row['nom'];
                                         $prenom = $row['prenom'];

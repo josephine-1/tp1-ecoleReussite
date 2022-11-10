@@ -45,7 +45,7 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
 </head>
 
 <body>
-<h3 class="text-center text-secondary">ADMINISTRATEUR</h3>
+
     <?php
     
     include("model/model.php"); 
@@ -146,13 +146,14 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
           $rows = $state->fetch(PDO::FETCH_ASSOC);  
           ?>
           <!-- ici nous avons l'image du profil -->
-          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="100" width="100" />
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
     
          
                  
         </div>
         <div class="col-lg-3 mt-5">
          <H3><?php  echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></H3>  
+         <h6><?php echo $_SESSION['matricule']?></h6> 
         </div>
        
 

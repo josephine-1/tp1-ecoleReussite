@@ -18,7 +18,7 @@
     <?php
     include("model/model.php");
     ?>
-    <h1 class="text-center text-black" style="border: 5px solid rgba(252, 220, 181, 1);background-color:cornflowerblue;">Utilisateur Simple</h1>
+  
     <?php
     
     /*  include("model/model.php"); */
@@ -26,6 +26,7 @@
      if($_SESSION['id']){
          $idSession=$_SESSION['id'];
      } */
+     
      ?>
     <div class="container-fluid">
         <div class="row  m-5">
@@ -65,18 +66,21 @@
           $rows = $state->fetch(PDO::FETCH_ASSOC);  
           ?>
           <!-- ici nous avons l'image du profil -->
-          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="100" width="100" />
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
     
           
               
         </div>
         <div class="col-lg-3 mt-5">
         <h3><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></h3> 
+        <h6><?php echo $_SESSION['matricule']?></h6> 
         </div>
 
-                    <div class="col-lg-5 mt-5">
-                        <input class="form-control me-2" type="search" style="width: 20rem;" placeholder="Search" aria-label="Search">
-
+        <div class="col-lg-5 mt-5">
+                        <form method="post" action="">
+                        <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
+                        <!-- <button></button>  -->  
+                    </form>
                     </div>
                     <div class="col-lg-1 mt-5">
                         <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
@@ -104,7 +108,10 @@
                                 $id = $_SESSION["id"];
                                 $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
                                 $lister->execute();
+                                if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
+                                    $monNom = $_POST['recherche']; 
                                 while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                    if ($row['nom'] == $monNom){
                                     $nom = $row['nom'];
                                     $prenom = $row['prenom'];
                                     $email = $row['mail'];
@@ -120,6 +127,24 @@
            <td>' . $date_Act . '</td>
             </tr>
            ';
+                                }}}else{
+                                    while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                        $nom = $row['nom'];
+                                        $prenom = $row['prenom'];
+                                        $email = $row['mail'];
+                                        $matricule = $row['matricule'];
+                                        $role = $row['rol'];
+                                        $date_Act = $row['date_Act'];
+                                        echo '
+               <tr>
+               <td>' . $prenom . '</td>
+               <td>' . $nom . '</td>
+               <td>' . $email . '</td>
+               <td>' . $matricule . '</td>
+               <td>' . $date_Act . '</td>
+                </tr>
+               ';
+                                    }
                                 }
                                 ?>
                             </tbody>

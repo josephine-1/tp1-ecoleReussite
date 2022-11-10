@@ -1,3 +1,8 @@
+<?php
+ session_start();
+ /*   include("model/model.php"); */
+   $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +86,14 @@
             <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
                     <div class="col-lg-6 ">
-                    <img src="image/etudiante.jpg" class="rounded-circle border p-1  " height="200" width="200" />
+                    <?php
+      $matricule = $_SESSION["matricule"];
+        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
+          $state->execute(['matricule'=> $matricule]);
+          $rows = $state->fetch(PDO::FETCH_ASSOC);  
+          ?>
+          <!-- ici nous avons l'image du profil -->
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
                     </div>
 
                     <div class="col-lg-3 mt-5">

@@ -1,15 +1,15 @@
 <?php
-session_start();
+  session_start();
 /*   include("model/model.php"); */
-$newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
-
-    /*  $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
+  $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
+ 
+ /*  $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
         $sql->execute([
             
             'matricule'=> $_SESSION['matricule']
             
         ]); */
-    /*   
+/*   
  
   
 $req=new ModelUser();
@@ -20,7 +20,7 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
             
         ]);   */
 
-    /* $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc") */;
+/* $newBD= new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc") */;
 
 
 ?>
@@ -46,22 +46,21 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
 <header>
     <div id="msg" class=" text-center text-success " style="font-size: 2rem;">
         <p>
-            <?= $_GET["message"] ?? null ?>
+            <?=$_GET["message"] ?? null ?>
         </p>
     </div>
 </header>
-
 <body>
 
     <?php
-
-    include("model/model.php");
-    /*  include("traitement-photo.php"); */
-    /*   if($_SESSION['id']){
+    
+    include("model/model.php"); 
+   /*  include("traitement-photo.php"); */
+  /*   if($_SESSION['id']){
         $idSession=$_SESSION['id'];
     }*/
     ?>
-
+ 
 
 
     <div class="container">
@@ -121,55 +120,55 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
             <div class="part2 col-lg-9 ">
                 <div class="row profil" style="background-color:  cornflowerblue;height:15rem">
                     <div class="col-lg-3 ">
-
-                        <!--  <p> 
+                       
+                       <!--  <p> 
                             <?php
                             /* echo $data["matricule"]; */
                             ?>
                         </p> -->
-                        <!-- Recupèration de la photo à la base de données -->
-                        <?php
-                        /*  $bdd = new ModelUser; */
-                        /* 
+         <!-- Recupèration de la photo à la base de données -->
+          <?php
+           /*  $bdd = new ModelUser; */
+          /* 
           $newBD=new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
           $state = $newBD->prepare("SELECT photo FROM photo WHERE user=:user");
           $state->execute(['user'=> $idSession]);
           $rows = $state->fetch(PDO::FETCH_ASSOC); */
-
-                        ?>
-                        <!-- ici nous avons l'image du profil -->
-                        <!--   <h4>
+          
+          ?>
+          <!-- ici nous avons l'image du profil -->
+         <!--   <h4>
             <?php /* echo $_SESSION['matricule']; */ ?>
         </h4> 
  -->
-                        <!--  <div class="col-8  d-flex justify-content-center align-items-center">
+         <!--  <div class="col-8  d-flex justify-content-center align-items-center">
         <h1 style="color: #2A7282;"> Bienvenue </h1>
-      </div> -->
+      </div> --> 
 
-                        <?php
-                        $matricule = $_SESSION["matricule"];
-                        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
-                        $state->execute(['matricule' => $matricule]);
-                        $rows = $state->fetch(PDO::FETCH_ASSOC);
-                        ?>
-                        <!-- ici nous avons l'image du profil -->
-                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
-
-
-
-                    </div>
-                    <div class="col-lg-3 mt-5">
-                        <H3><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></H3>
-                        <h6><?php echo $_SESSION['matricule'] ?></h6>
-                    </div>
-
+      <?php
+      $matricule = $_SESSION["matricule"];
+        $state = $newBD->prepare("SELECT photo FROM user WHERE matricule=:matricule");
+          $state->execute(['matricule'=> $matricule]);
+          $rows = $state->fetch(PDO::FETCH_ASSOC);  
+          ?>
+          <!-- ici nous avons l'image du profil -->
+          <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
+    
+         
+                 
+        </div>
+        <div class="col-lg-3 mt-5">
+         <H3><?php  echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></H3>  
+         <h6><?php echo $_SESSION['matricule']?></h6> 
+        </div>
+       
 
                     <div class="col-lg-5 mt-5">
                         <form method="post" action="">
-                            <input class="form-control me-2" type="search" style="width: 15rem;" name="recherche" placeholder="Search" aria-label="Search">
-                            <!--  <button type="submit"   ><i class="fa-solid fa-magnifying-glass"></i></button> -->
-
-                        </form>
+                        <input class="form-control me-2" type="search"style="width: 15rem;" name="recherche" placeholder="Search" aria-label="Search">
+                       <!--  <button type="submit"   ><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                         
+                    </form>
                     </div>
                     <div class="col-lg-1 mt-5">
                         <a href="model/deconnexion.php"><img src="image/deconnect.svg" style="height:2rem;" alt=""></a>
@@ -193,44 +192,44 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                             </thead>
                             <tbody>
                                 <?php
-
+                                
                                 $bdd = new ModelUser;
                                 $id = $_SESSION["id"];
-                                $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
-                                $lister->execute();
-                                if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
+                               $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
+                               $lister->execute();
+                                 if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
 
-                                    //pagination          
-                                    // récupérer le nombre d'enregistrements 
-                                    $count = $bdd->newBD->prepare("SELECT count(id) as cpt FROM user  WHERE etat=0 ");
-                                    $count->setFetchMode(PDO::FETCH_ASSOC);
-                                    $count->execute();
-                                    $tcount = $count->fetchAll();
-                                    //pagination
-                                    if (isset($_GET['page'])) {
-                                        @$page = $_GET["page"];
-                                    } else {
-                                        @$page = 1;
-                                    }
-                                    $nbr_elements_par_page = 5;
-                                    $nbr_de_pages = ceil($tcount[0]["cpt"] / $nbr_elements_par_page);
-                                    $debut = ($page - 1) * $nbr_elements_par_page;
-                                    //récupérer les enregistrements eux-mêmes
-                                    $stmt = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 LIMIT $debut,$nbr_elements_par_page");
-                                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                    $stmt->execute();
+                                     //pagination          
+          // récupérer le nombre d'enregistrements 
+                $count=$bdd->newBD->prepare("SELECT count(id) as cpt FROM user  WHERE etat=0 ");
+                $count->setFetchMode(PDO::FETCH_ASSOC);
+                $count->execute();
+                $tcount=$count->fetchAll();
+          //pagination
+                if (isset($_GET['page'])){
+                  @$page=$_GET["page"];
+                } else {
+                  @$page = 1;
+                }
+                $nbr_elements_par_page=5;
+                $nbr_de_pages=ceil($tcount[0]["cpt"]/$nbr_elements_par_page);
+                $debut=($page-1)*$nbr_elements_par_page;
+          //récupérer les enregistrements eux-mêmes
+                $stmt=$bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 LIMIT $debut,$nbr_elements_par_page");
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                $stmt->execute();
+                   
 
 
-
-                                    $monNom = $_POST['recherche'];
-                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                        if ($row['nom'] == $monNom) {
-                                            $nom = $row['nom'];
-                                            $prenom = $row['prenom'];
-                                            $email = $row['mail'];
-                                            $matricule = $row['matricule'];
-                                            $role = $row['rol'];
-                                            echo '
+                                    $monNom = $_POST['recherche']; 
+                                while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                     if ($row['nom'] == $monNom){ 
+                                    $nom = $row['nom'];
+                                    $prenom = $row['prenom'];
+                                    $email = $row['mail'];
+                                    $matricule = $row['matricule'];
+                                    $role = $row['rol'];
+                                    echo '
                                    <tr>
                                    <td>' . $prenom . '</td>
                                    <td>' . $nom . '</td>
@@ -238,15 +237,15 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                                    <td>' . $matricule . '</td>
                                    <td>' . $role . '</td>
                                    <td style=""> 
-                                   <a  href="modifier.php?matricule=' . $matricule . '" class="btn btn-primary" ">
+                                   <a  href="modifier.php?matricule='.$matricule.'" class="btn btn-primary" ">
                                         <img src="image/edit.png" style="height:2rem;" alt="">
                                     </a>
                                    
-                                    <a href="traitementDelete.php?matricule=' . $matricule . '" type="button" class="btn btn-danger" >
+                                    <a href="traitementDelete.php?matricule='. $matricule .'" type="button" class="btn btn-danger" >
                                     <img src="image/delate.jpg" style="height:2rem;" alt="">
                                     </a>
 
-                                    <a href="traitementSwap.php?matricule=' . $matricule . '" type="button" class="btn btn-success" >
+                                    <a href="traitementSwap.php?matricule='. $matricule .'" type="button" class="btn btn-success" >
                                     <img src="image/swap.png" style="height:2rem;" alt=""  >
                                     </a>
 
@@ -257,37 +256,16 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                                    </td>
                                     </tr>
                                    ';
-                                        }
-                                    }
-                                } else {
-                                    //pagination          
-                                    // récupérer le nombre d'enregistrements 
-                                    $count = $bdd->newBD->prepare("SELECT count(id) as cpt FROM user  WHERE etat=0 ");
-                                    $count->setFetchMode(PDO::FETCH_ASSOC);
-                                    $count->execute();
-                                    $tcount = $count->fetchAll();
-                                    //pagination
-                                    if (isset($_GET['page'])) {
-                                        @$page = $_GET["page"];
-                                    } else {
-                                        @$page = 1;
-                                    }
-                                    $nbr_elements_par_page = 5;
-                                    $nbr_de_pages = ceil($tcount[0]["cpt"] / $nbr_elements_par_page);
-                                    $debut = ($page - 1) * $nbr_elements_par_page;
-                                    //récupérer les enregistrements eux-mêmes
-                                    $stmt = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 LIMIT $debut,$nbr_elements_par_page");
-                                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                    $stmt->execute();
-
-                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                        /*  if ($row['nom'] == $monNom){  */
-                                        $nom = $row['nom'];
-                                        $prenom = $row['prenom'];
-                                        $email = $row['mail'];
-                                        $matricule = $row['matricule'];
-                                        $role = $row['rol'];
-                                        echo '
+                                } }
+                            }else {
+                                while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                   /*  if ($row['nom'] == $monNom){  */
+                                   $nom = $row['nom'];
+                                   $prenom = $row['prenom'];
+                                   $email = $row['mail'];
+                                   $matricule = $row['matricule'];
+                                   $role = $row['rol'];
+                                   echo '
                                   <tr>
                                   <td>' . $prenom . '</td>
                                   <td>' . $nom . '</td>
@@ -295,15 +273,15 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                                   <td>' . $matricule . '</td>
                                   <td>' . $role . '</td>
                                   <td style=""> 
-                                  <a  href="modifier.php?matricule=' . $matricule . '" class="btn btn-primary" ">
+                                  <a  href="modifier.php?matricule='.$matricule.'" class="btn btn-primary" ">
                                        <img src="image/edit.png" style="height:2rem;" alt="">
                                    </a>
                                   
-                                   <a href="traitementDelete.php?matricule=' . $matricule . '" type="button" class="btn btn-danger" >
+                                   <a href="traitementDelete.php?matricule='. $matricule .'" type="button" class="btn btn-danger" >
                                    <img src="image/delate.jpg" style="height:2rem;" alt="">
                                    </a>
 
-                                   <a href="traitementSwap.php?matricule=' . $matricule . '" type="button" class="btn btn-success" >
+                                   <a href="traitementSwap.php?matricule='. $matricule .'" type="button" class="btn btn-success" >
                                    <img src="image/swap.png" style="height:2rem;" alt=""  >
                                    </a>
 
@@ -314,41 +292,41 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                                   </td>
                                    </tr>
                                   ';
-                                        /* } */
-                                    }
-                                }/**/
+                               /* } */
+                            } }/**/
                                 ?>
-                                <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+<!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
                             </tbody>
                         </table>
                         <!-- Pagination -->
                         <!-- Affichage des boutons de la pagination -->
-                        <nav aria-label="Page navigation example" id="pagination">
-                            <ul class="pagination justify-content-center">
-                                </li>
-                                <?php
-                                for ($i = 1; $i <= $nbr_de_pages; $i++) {
-                                    if ($page != $i) {
-                                        echo "
+    <nav aria-label="Page navigation example" id="pagination">
+      <ul class="pagination justify-content-center">
+        </li>
+          <?php 
+                for ($i=1; $i <=$nbr_de_pages; $i++) { 
+                  if ($page!=$i) {
+                    echo"
                     <li class='page-item ' > <a class='page-link' href='?page=$i'>$i</a></li>&nbsp;
                     ";
-                                    } else {
-                                        echo "
+                  }else{
+                    echo"
                     <li class='page-item '> <a class='page-link text-light' style='background-color: #2A7282;' href='?page=$i'>$i</a></li>&nbsp;
                     ";
-                                    }
-                                }
-                                ?>
-                            </ul>
+                  }
+                    
+                }
+          ?>
+      </ul>
 
-                        </nav>
+    </nav>
 
                     </div>
                 </div>
 
             </div>
         </div>
-        <script src="msg.js"></script>
+<script src="msg.js"></script>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

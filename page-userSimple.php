@@ -108,9 +108,33 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                                 $id = $_SESSION["id"];
                                 $lister = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 AND id!=$id");
                                 $lister->execute();
-                                if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) {
+                                if (isset($_POST['recherche']) && ($_POST['recherche'] != '')) 
+                                {
+
+
+  //pagination          
+                                    // récupérer le nombre d'enregistrements 
+                                    $count = $bdd->newBD->prepare("SELECT count(id) as cpt FROM user  WHERE etat=0 ");
+                                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                                    $count->execute();
+                                    $tcount = $count->fetchAll();
+                                    //pagination
+                                    if (isset($_GET['page'])) {
+                                        @$page = $_GET["page"];
+                                    } else {
+                                        @$page = 1;
+                                    }
+                                    $nbr_elements_par_page = 5;
+                                    $nbr_de_pages = ceil($tcount[0]["cpt"] / $nbr_elements_par_page);
+                                    $debut = ($page - 1) * $nbr_elements_par_page;
+                                    //récupérer les enregistrements eux-mêmes
+                                    $stmt = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 LIMIT $debut,$nbr_elements_par_page");
+                                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                    $stmt->execute();
+
+
                                     $monNom = $_POST['recherche'];
-                                    while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         if ($row['nom'] == $monNom) {
                                             $nom = $row['nom'];
                                             $prenom = $row['prenom'];
@@ -130,7 +154,28 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                                         }
                                     }
                                 } else {
-                                    while ($row = $lister->fetch(PDO::FETCH_ASSOC)) {
+
+                                    //pagination          
+                                    // récupérer le nombre d'enregistrements 
+                                    $count = $bdd->newBD->prepare("SELECT count(id) as cpt FROM user  WHERE etat=0 ");
+                                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                                    $count->execute();
+                                    $tcount = $count->fetchAll();
+                                    //pagination
+                                    if (isset($_GET['page'])) {
+                                        @$page = $_GET["page"];
+                                    } else {
+                                        @$page = 1;
+                                    }
+                                    $nbr_elements_par_page = 5;
+                                    $nbr_de_pages = ceil($tcount[0]["cpt"] / $nbr_elements_par_page);
+                                    $debut = ($page - 1) * $nbr_elements_par_page;
+                                    //récupérer les enregistrements eux-mêmes
+                                    $stmt = $bdd->newBD->prepare("SELECT * FROM user WHERE etat=0 LIMIT $debut,$nbr_elements_par_page");
+                                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                    $stmt->execute();
+
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         $nom = $row['nom'];
                                         $prenom = $row['prenom'];
                                         $email = $row['mail'];
@@ -152,14 +197,26 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                             </tbody>
                         </table>
                         <!-- Pagination -->
+                        <!-- Pagination -->
+                        <!-- Affichage des boutons de la pagination -->
                         <nav aria-label="Page navigation example" id="pagination">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </li>
+                                <?php
+                                for ($i = 1; $i <= $nbr_de_pages; $i++) {
+                                    if ($page != $i) {
+                                        echo "
+                    <li class='page-item ' > <a class='page-link' href='?page=$i'>$i</a></li>&nbsp;
+                    ";
+                                    } else {
+                                        echo "
+                    <li class='page-item '> <a class='page-link text-light' style='background-color: #2A7282;' href='?page=$i'>$i</a></li>&nbsp;
+                    ";
+                                    }
+                                }
+                                ?>
                             </ul>
+
                         </nav>
                     </div>
 

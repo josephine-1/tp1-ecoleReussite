@@ -19,13 +19,23 @@ $emplacement = "image_user/".$Photo;
 $matricule = date('  his-- A', time()).'-GZL';
 $message="";
 
+
 $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
      $req=$pdo->query("SELECT id from user where mail='$mail'");
+
+     $rese = $pdo->query("SELECT mail from user where mail='$mail'");
+     $recup = $rese->rowCount();
+     if ($rese->rowCount() > 0) {
+       $erreur="<div class='alert alert-danger' role='alert'>
+    <p class='text-center'> Email existant</p>
     
+     </div>";
+     var_dump($recup);die;
+       }
      
         if(count($tab) !== 0){
 
-             header("location:../page-inscription.php");
+             header("location:page-inscription.php");
 
         }
 
@@ -45,7 +55,7 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
             
              if($ins){
                 move_uploaded_file($Photo_tmp, $emplacement);
-                header("location:page-inscription.php");
+                header("location:page-inscription.php?message2=Inscription avec succés !");
              }
              else
 
@@ -74,9 +84,9 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
 </head>
 <header>
     
-    <div>
+    <div id="msg" class=" text-center text-danger " style="font-size: 2rem;">
         <p>
-            <?=$_GET["message"] ?? null ?>
+            <?=$_GET["message2"] ?? null ?>
         </p>
     </div>
 </header>
@@ -109,6 +119,8 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
 
 
                 <form method="post" id="form" action="" class="form mx-auto" enctype="multipart/form-data">
+                   
+                    <div><p><?= $erreur ?? null ?></p></div>
                     <div class="logo">
                         <img src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;">
                     </div>
@@ -209,6 +221,7 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
        /*  header("location:page-inscription.php?message=Inscription avec succés"); */
         ?>
     </div>
+    <script src="modif.js"></script>
     <script src="inscription.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

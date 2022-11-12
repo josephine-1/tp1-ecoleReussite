@@ -102,9 +102,9 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
                             <h4>Tableau de bord</h4>
                         </div>
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
-                        <div class="lesUsers text-center " style="color: black;">
+                        <div class="lesUsers text-center" style="color: black;">
                             <a href="page-admin.php"><strong>actifs</strong></a><br><br>
-                            <a href="page_archiver.php"><strong> archivés</strong></a><br><br>
+                            <a href="page_archiver.php"><strong>archivés</strong></a><br><br>
                             <a href="page-inscription.php"><strong> inscrire</strong></a>
                         </div>
                     </div>

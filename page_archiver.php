@@ -176,17 +176,10 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                                        <td>' . $matricule . '</td>
                                        <td>' . $role . '</td>
                                        <td style=""> 
-                                       <a  href="modifier.php?matricule=' . $matricule . '" class="btn btn-primary" ">
-                                            <img src="image/edit.png" style="height:2rem;" alt="">
-                                        </a>
+                                       <a  href="traitementDelete.php?matriculDA=' . $matricule . '" class="btn btn-primary" ">
+                                        <img src="image/archiver.png" style="height:2rem;" alt="">
+                                    </a>
                                        
-                                        <a href="traitementDelete.php?matricule=' . $matricule . '" type="button" class="btn btn-danger" >
-                                        <img src="image/delate.jpg" style="height:2rem;" alt="">
-                                        </a>
-     
-                                        <a href="traitementSwap.php?matricule=' . $matricule . '" type="button" class="btn btn-success" >
-                                        <img src="image/swap.png" style="height:2rem;" alt=""  >
-                                        </a>
      
      
      

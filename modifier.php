@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styler.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <title>page-modification</title>
 
 </head>
@@ -45,7 +47,7 @@
             'mail' => $_POST['mail'],
             'matricule'=> $_POST['matricule']
         ]);
-        header("location:page-admin.php");
+        header("location:page-admin.php?message=modification avec succés!");
     }
 
     ?>
@@ -71,23 +73,37 @@
                 <div class="row  m-5">
                     <div class="col-lg-12  ">
                         <form class="maForm " action="modifier.php" method="POST">
-                            <input type="text" name="matricule" hidden value="<?php  if(isset($row[0]['matricule'])) echo $row[0]['matricule'] ?>">
-                            <div class="mb-3 ">
-                                <input class="form-control"  type="nom" name="nom"    style="height:5rem;"      value="<?php  if(isset($row[0]['nom'])) echo $row[0]['nom'] ?>" />
+                             <input type="text" name="matricule" hidden value="<?php  if(isset($row[0]['matricule'])) echo $row[0]['matricule'] ?>">
+                            
 
+                             
+                             <div class="mb-3 ">
+                            <label for="input1" class="form-label">Nom <span style="color: red;">*</span></label>
+
+                                <input class="form-control"  type="nom" name="nom"  id="nom"  style="height:5rem;"      value="<?php  if(isset($row[0]['nom'])) echo $row[0]['nom'] ?>" required />
+                                <div class="invalid-feedback d-none" id="champ-reqNom">Champs obligatoire</div>
                             </div>
                             <div class="mb-3">
-                               
-                                <input class="form-control" type="prenom" name="prenom" style="height:5rem;"  value="<?php if(isset($row[0]['prenom'])) echo $row[0]['prenom']?>"/>
+                            <label for="input1" class="form-label">prenom <span style="color: red;">*</span></label>
+
+                                <input class="form-control" type="prenom" name="prenom" id="prenom" style="height:5rem;"  value="<?php if(isset($row[0]['prenom'])) echo $row[0]['prenom']?>" required />
+                                
+                                <div class="invalid-feedback d-none" id="champ-reqNom">Champs obligatoire</div>
                             </div>
-                            <div class="mb-3">
-                               
-                                <input class="form-control"  type="mail" name="mail" style="height:5rem;" value="<?php if(isset($row[0]['mail'])) echo $row[0]['mail']?>"/>
+                            <div class="input-control mb-3">
+                                <label for="input1" class="form-label">Mail <span style="color: red;">*</span></label>
+
+                                <input type="text" class="form-control p-3 rounded-0" id="mail" name="mail" required value="<?php if(isset($row[0]['mail'])) echo $row[0]['mail']?>">
+                                <div class="valid-feedback">Email field is valid!</div>
+                                <div class="invalid-feedback d-none" id="champ-reqEmail">Champs obligatoire</div>
+                                <div class="invalid-feedback d-none" id="email-invalid">email incorrect</div>
 
                             </div>
+                          
 
 
-                            <button type="submit" class="btn btn-danger" name="modifie">Modifier</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-primary w-100">Modifier</button>
+                           
                         </form>
                     </div>
 
@@ -96,6 +112,8 @@
             </div>
 
         </div>
+        <script src="modif.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

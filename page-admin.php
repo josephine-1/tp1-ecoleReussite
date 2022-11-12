@@ -43,7 +43,13 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
         }
     </style>
 </head>
-
+<header>
+    <div class=" text-center text-success " style="font-size: 2rem;">
+        <p>
+            <?=$_GET["message"] ?? null ?>
+        </p>
+    </div>
+</header>
 <body>
 
     <?php
@@ -159,8 +165,9 @@ $sql=$req->newBD->prepare("SELECT * from user  WHERE matricule=?");
 
                     <div class="col-lg-5 mt-5">
                         <form method="post" action="">
-                        <input class="form-control me-2" type="search" name="recherche" style="width: 20rem;" placeholder="Search" aria-label="Search">
-                        <!-- <button></button>  -->  
+                        <input class="form-control me-2" type="search"style="width: 15rem;" name="recherche" placeholder="Search" aria-label="Search">
+                       <!--  <button type="submit"   ><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                         
                     </form>
                     </div>
                     <div class="col-lg-1 mt-5">

@@ -13,7 +13,7 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
     <link href="styler.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>page-admin</title>
+    <title>page-archivés</title>
     <style>
         td {
             /*     border:1px solid black; */
@@ -76,8 +76,7 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                         </div>
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
                         <div class="lesUsers text-center " style="color: black;">
-                            <a href="page-admin.php"><strong>actifs</strong></a><br>
-                            <a href="archivés.php"><strong> archivés</strong></a>
+                            <a href="page-admin.php"><button class="btn2 bg-primary">Retour</button></a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +92,7 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                         $rows = $state->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <!-- ici nous avons l'image du profil -->
-                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="250" width="200" />
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rows['photo']); ?>" class="rounded-circle border p-1 bg-secondary" height="200" width="200" />
                     </div>
 
                     <div class="col-lg-5 mt-5">

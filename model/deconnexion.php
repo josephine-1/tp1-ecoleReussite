@@ -7,7 +7,7 @@ session_unset();
 session_destroy();
 $_SESSION['matricule'] = "";
 if ($_SESSION['matricule'] == "") {
-    header('location:page-connexion.php');
+    header('location:../page-connexion.php');
 }
 
 

@@ -72,10 +72,18 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
 
 
 </head>
-
+<header>
+    
+    <div>
+        <p>
+            <?=$_GET["message"] ?? null ?>
+        </p>
+    </div>
+</header>
 <body style="background-color:  cornflowerblue;">
 
     <?php
+    
     /*  include('action.php'); */
 
   /*   include("model/model.php");
@@ -197,7 +205,9 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
         </div><br><br><br><br><br><br><br><br>
 
         <!--  <div class="card mx-auto" style="width: 40rem;height: 40rem;"> -->
-
+            <?php
+       /*  header("location:page-inscription.php?message=Inscription avec succés"); */
+        ?>
     </div>
     <script src="inscription.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

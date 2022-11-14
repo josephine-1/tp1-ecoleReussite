@@ -24,47 +24,79 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
      $req=$pdo->query("SELECT id from user where mail='$mail'");
 
      $rese = $pdo->query("SELECT mail from user where mail='$mail'");
-     $recup = $rese->rowCount();
-     if ($rese->rowCount() > 0) {
-       $erreur="<div class='alert alert-danger' role='alert'>
-    <p class='text-center'> Email existant</p>
+     //  $recup = $rese->rowCount();
+     $verif = $rese->fetch();
+    //  var_dump(!$verif);die;
+     if (!$verif) {
+    //    $erreur="
+    //    <div class='alert alert-danger' role='alert'>
+    //          <p class='text-center'> Email existant</p>
     
-     </div>";
-     var_dump($recup);die;
+    //         </div>";
+
+
+    $mdp_enc = md5($mdp1);
+    $ins=$pdo->prepare("insert into user(matricule,nom,prenom,mail,rol,mdp1,photo,date_Act) values(?,?,?,?,?,?,?,now())");
+     $ins->bindParam(1, $matricule);
+     $ins->bindParam(2, $nom);
+     $ins->bindParam(3, $prenom);
+     $ins->bindParam(4, $mail);
+     $ins->bindParam(5, $rol);
+     $ins->bindParam(6, $mdp_enc);
+     $ins->bindParam(7, $Photo);
+
+    
+     $ins->execute();
+    
+    //  if($ins){
+        move_uploaded_file($Photo_tmp, $emplacement);
+        header("location:page-inscription.php?message2=Inscription avec succés !");
+    //  }
+
+
        }
      
-        if(count($tab) !== 0){
+        // if(count($tab) !== 0){
 
-             header("location:page-inscription.php");
+        //      header("location:page-inscription.php");
 
-        }
+        // }
 
         else{
 
-            $mdp_enc = md5($mdp1);
-            $ins=$pdo->prepare("insert into user(matricule,nom,prenom,mail,rol,mdp1,photo,date_Act) values(?,?,?,?,?,?,?,now())");
-             $ins->bindParam(1, $matricule);
-             $ins->bindParam(2, $nom);
-             $ins->bindParam(3, $prenom);
-             $ins->bindParam(4, $mail);
-             $ins->bindParam(5, $rol);
-             $ins->bindParam(6, $mdp_enc);
-             $ins->bindParam(7, $Photo);
-             
-             $ins->execute();
-            
-             if($ins){
-                move_uploaded_file($Photo_tmp, $emplacement);
-                header("location:page-inscription.php?message2=Inscription avec succés !");
-             }
-             else
+            // $mdp_enc = md5($mdp1);
+            // $ins=$pdo->prepare("insert into user(matricule,nom,prenom,mail,rol,mdp1,photo,date_Act) values(?,?,?,?,?,?,?,now())");
+            //  $ins->bindParam(1, $matricule);
+            //  $ins->bindParam(2, $nom);
+            //  $ins->bindParam(3, $prenom);
+            //  $ins->bindParam(4, $mail);
+            //  $ins->bindParam(5, $rol);
+            //  $ins->bindParam(6, $mdp_enc);
+            //  $ins->bindParam(7, $Photo);
 
-             {
-                header("location:page-connexion.php");
-             }               
+            
+            //  $ins->execute();
+            
+            //  if($ins){
+            //     move_uploaded_file($Photo_tmp, $emplacement);
+            //     header("location:page-inscription.php?message2=Inscription avec succés !");
+            //  }
+            //  else
+
+            //  {
+            //     $erreur["err_cmpt"]="Ce Compte existe deja";
+            //     header('location:page-inscription.php?err_cmpt='.$erreur["err_cmpt"].'');
+            //     exit;
+            //  }               
+
+            $erreur["err_cmpt"]="Ce Compte existe deja";
+            header('location:page-inscription.php?err_cmpt='.$erreur["err_cmpt"].'');
+            exit;
+            
 
         
-            }}
+            }
+        }
         
         ?>
 <!DOCTYPE html>
@@ -89,6 +121,9 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
             <?=$_GET["message2"] ?? null ?>
         </p>
     </div>
+    <!-- erreur compte -->
+   
+
 </header>
 <body style="background-color:  cornflowerblue;">
 
@@ -102,9 +137,17 @@ $pdo=new PDO("mysql:host=localhost;dbname=mon-tp1","sosso","abc");
         $requete->inscription($_POST['nom'], $_POST['prenom'], $_POST['mail'], $_POST['rol'], $_POST['mdp1']);
     } */
 
+
+   
     ?>
 
     <div class="container">
+ <?php 
+ if (isset($_GET["err_cmpt"])) {
+    $_erreur=$_GET["err_cmpt"];
+    echo "<p style='color:red'>".$_erreur."</p>";
+ }
+ ?>
         <!-- Partie 1 image -->
 
         <div class="container   mt-2 sec1 ">

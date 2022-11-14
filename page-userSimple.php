@@ -40,8 +40,7 @@ $newBD = new PDO("mysql:host=localhost;dbname=mon-tp1", "sosso", "abc");
                         </div>
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
                         <div class="lesUsers text-center " style="color: black;">
-                            <a href="page-admin.php"><strong> actifs</strong></a><br><br>
-                            <a href="page_archiver"><strong> archivés</strong></a>
+                           
                         </div>
                     </div>
                 </div>
